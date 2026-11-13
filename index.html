@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安克 (Anker) × 格莱美 (GRAMMYs) 全球整合营销与长效资产沉淀方案</title>
+    <style>
+        :root {
+            --bg-obsidian: #08090C;        /* 殿堂深空黑 */
+            --bg-surface: #12151E;         /* 磨砂钛金黑 */
+            --bg-card: #171B26;            /* 高定卡片底色 */
+            --grammy-gold: #D4AF37;        /* 格莱美流光金 */
+            --grammy-gold-light: #F5E2A8;  /* 浅香槟金 */
+            --grammy-gold-dim: rgba(212, 175, 55, 0.18);
+            --anker-blue: #00A8E8;         /* 安克科技电光蓝 */
+            --anker-blue-dim: rgba(0, 168, 232, 0.15);
+            --text-ivory: #F7F5F0;         /* 暖调象牙白 */
+            --text-silver: #A0AAB8;        /* 金属银灰 */
+            --border-gold: rgba(212, 175, 55, 0.28);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'PingFang SC', 'Hiragino Sans GB', 'Helvetica Neue', 'Microsoft YaHei', sans-serif;
+            background: radial-gradient(circle at 85% 10%, rgba(212, 175, 55, 0.10) 0%, transparent 40%),
+                        radial-gradient(circle at 10% 80%, rgba(0, 168, 232, 0.07) 0%, transparent 45%),
+                        var(--bg-obsidian);
+            color: var(--text-ivory);
+            min-height: 100vh;
+            padding: 32px 24px 72px 24px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        /* ==================== 顶部殿堂级黑金 Banner ==================== */
+        .hero-banner {
+            background: linear-gradient(135deg, #10131A 0%, #1B1814 55%, #2B2212 100%);
+            border-radius: 26px;
+            padding: 42px 48px;
+            border: 1px solid var(--border-gold);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(245, 226, 168, 0.25);
+            display: grid;
+            grid-template-columns: 1.35fr 1fr;
+            gap: 36px;
+            align-items: center;
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::before {
+            content: "";
+            position: absolute;
+            top: -120px; right: -120px;
+            width: 380px; height: 380px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.22) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .eyebrow-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.22), rgba(0, 168, 232, 0.15));
+            border: 1px solid var(--border-gold);
+            color: var(--grammy-gold-light);
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 0.84rem;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            line-height: 1.28;
+            margin-bottom: 14px;
+            background: linear-gradient(95deg, #FFFFFF 0%, #F5E2A8 65%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-slogan-box {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 4px solid var(--grammy-gold);
+            padding: 14px 20px;
+            border-radius: 0 14px 14px 0;
+            margin-bottom: 16px;
+        }
+
+        .hero-slogan-en {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--grammy-gold-light);
+            letter-spacing: 0.6px;
+        }
+
+        .hero-slogan-cn {
+            font-size: 0.96rem;
+            color: var(--text-silver);
+            margin-top: 4px;
+        }
+
+        .hero-desc {
+            color: var(--text-silver);
+            font-size: 0.94rem;
+            line-height: 1.65;
+        }
+
+        /* ==================== 通用 AI 配图预留窗口样式 ==================== */
+        .ai-slot {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(145deg, rgba(18, 21, 30, 0.9), rgba(29, 25, 18, 0.85));
+            border: 1.5px dashed rgba(212, 175, 55, 0.48);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .ai-slot:hover {
+            border-color: var(--grammy-gold-light);
+            box-shadow: 0 0 24px rgba(212, 175, 55, 0.15);
+        }
+
+        .ai-slot.hero-slot {
+            height: 280px;
+        }
+
+        /* 当你填入真实图片路径且加载成功时，自动铺满并遮盖提示词 */
+        .ai-slot img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 2;
+        }
+
+        /* 若图片未放入或为空，隐藏破损图标，显示底层 AI 提示词面板 */
+        .ai-slot img[src=""], .ai-slot img:not([src]) {
+            display: none;
+        }
+
+        .ai-placeholder-content {
+            z-index: 1;
+            max-width: 92%;
+        }
+
+        .ai-slot-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.18);
+            color: var(--grammy-gold-light);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 11px;
+            border-radius: 999px;
+            margin-bottom: 8px;
+        }
+
+        .ai-slot-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 6px;
+        }
+
+        .ai-prompt-text {
+            font-size: 0.78rem;
+            color: var(--text-silver);
+            background: rgba(0, 0, 0, 0.45);
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.07);
+            font-family: 'Menlo', 'Consolas', monospace;
+            line-height: 1.45;
+            user-select: all;
+        }
+
+        /* ==================== 顶部 4 维核心指标栏 ==================== */
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .kpi-card {
+            background: var(--bg-card);
+            border-radius: 18px;
+            padding: 20px 24px;
+            border: 1px solid var(--border-subtle);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+        }
+
+        .kpi-card::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0; bottom: 0; width: 5px;
+            background: var(--grammy-gold);
+        }
+        .kpi-card.blue::before { background: var(--anker-blue); }
+
+        .kpi-label { font-size: 0.82rem; color: var(--text-silver); font-weight: 600; margin-bottom: 6px; }
+        .kpi-val { font-size: 1.45rem; font-weight: 800; color: var(--grammy-gold-light); margin-bottom: 6px; }
+        .kpi-card.blue .kpi-val { color: #5CE1E6; }
+        .kpi-sub { font-size: 0.8rem; color: #8892A0; line-height: 1.45; }
+
+        /* ==================== 导航切换栏 ==================== */
+        .nav-tabs {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-silver);
+            padding: 14px 26px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.96rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-tab:hover {
+            border-color: var(--border-gold);
+            color: var(--grammy-gold-light);
+            transform: translateY(-2px);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, #B38728 0%, #D4AF37 55%, #F5E2A8 100%);
+            color: #090A0D;
+            border-color: transparent;
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.32);
+        }
+
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; animation: fadeIn 0.32s ease; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==================== 网格与通用卡片 ==================== */
+        .grid-12 {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+
+        .col-4 { grid-column: span 4; }
+        .col-6 { grid-column: span 6; }
+        .col-12 { grid-column: span 12; }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 22px;
+            padding: 28px 30px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card.gold-border { border-color: var(--border-gold); }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .card-title {
+            font-size: 1.24rem;
+            font-weight: 800;
+            color: var(--grammy-gold-light);
+        }
+
+        .card-subtitle {
+            font-size: 0.86rem;
+            color: var(--text-silver);
+            margin-top: 4px;
+        }
+
+        .pill {
+            font-size: 0.76rem;
+            font-weight: 700;
+            padding: 5px 13px;
+            border-radius: 999px;
+            background: var(--grammy-gold-dim);
+            color: var(--grammy-gold-light);
+            border: 1px solid var(--border-gold);
+            white-space: nowrap;
+        }
+
+        .pill.blue {
+            background: var(--anker-blue-dim);
+            color: #6BE5FF;
+            border-color: rgba(0, 168, 232, 0.35);
+        }
+
+        /* ==================== 1主4次 Hashtag 矩阵 ==================== */
+        .hashtag-matrix {
+            display: grid;
+            grid-template-columns: 1.2fr 2fr;
+            gap: 22px;
+            align-items: stretch;
+        }
+
+        .main-tag-box {
+            background: linear-gradient(145deg, rgba(212, 175, 55, 0.16), rgba(212, 175, 55, 0.04));
+            border: 1.5px solid var(--grammy-gold);
+            border-radius: 18px;
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .main-tag-name {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--grammy-gold-light);
+            margin: 8px 0 10px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .sub-tags-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .sub-tag-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 16px 18px;
+        }
+
+        .sub-tag-card b {
+            display: block;
+            font-size: 1.05rem;
+            color: #6BE5FF;
+            margin-bottom: 6px;
+        }
+
+        .sub-tag-card p {
+            font-size: 0.84rem;
+            color: var(--text-silver);
+        }
+
+        /* ==================== 平台玩法子卡片 ==================== */
+        .play-card {
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .play-card h4 {
+            font-size: 1.04rem;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .play-card ul {
+            padding-left: 18px;
+            font-size: 0.88rem;
+            color: var(--text-silver);
+        }
+
+        .play-card li { margin-bottom: 8px; }
+        .play-card li b { color: var(--text-ivory); }
+
+        /* ==================== 抖音达人矩阵表格 ==================== */
+        .luxury-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .luxury-table th, .luxury-table td {
+            padding: 18px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-subtle);
+            vertical-align: top;
+            font-size: 0.91rem;
+        }
+
+        .luxury-table th {
+            background: rgba(212, 175, 55, 0.14);
+            color: var(--grammy-gold-light);
+            font-weight: 800;
+            font-size: 0.93rem;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .luxury-table tr {
+            background: rgba(255, 255, 255, 0.015);
+            transition: background 0.2s ease;
+        }
+
+        .luxury-table tr:hover {
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .script-title {
+            color: var(--grammy-gold-light);
+            font-weight: 800;
+            font-size: 0.96rem;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        @media (max-width: 1100px) {
+            .hero-banner, .hashtag-matrix { grid-template-columns: 1fr; }
+            .kpi-row { grid-template-columns: repeat(2, 1fr); }
+            .col-4, .col-6 { grid-column: span 12; }
+            .sub-tags-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ==================== 顶部殿堂级黑金 Banner ==================== -->
+    <div class="hero-banner">
+        <div>
+            <div class="eyebrow-badge">Global Integrated Marketing Proposal</div>
+            <h1 class="hero-title">安克 (Anker) × 格莱美 (GRAMMYs)<br>全球整合营销与长效资产沉淀方案</h1>
+            <div class="hero-slogan-box">
+                <div class="hero-slogan-en">“Power The Grammy Moment”  传奇不落幕，高光不断电</div>
+                <div class="hero-slogan-cn">Before the Mic Drops, We Never Drop. 在聚光灯熄灭之前，我们让热爱满格续航</div>
+            </div>
+            <p class="hero-desc">
+                核心洞察：物理电力保障红毯闪光灯、Afterparty设备不掉链子；精神能量致敬每一首歌背后的创作历程，将冰冷充电配件升华至情感赋能。
+            </p>
+        </div>
+
+        <!-- 预留 AI 配图窗口 1：主视觉KV -->
+        <div class="ai-slot hero-slot">
+            <!-- 【配图替换方法】将你生成的图片命名为 hero_kv.jpg 放入同文件夹，并填入下方 src="" 中 -->
+            <img src="anker_0.webp" alt="Anker x GRAMMYs 主视觉KV" onerror="this.style.display='none'">
+            <div class="ai-placeholder-content">
+                <span class="ai-slot-badge">🖼️ AI 概念图预留位 01 · 主视觉</span>
+                <div class="ai-slot-title">黑金格莱美留声机 × Anker MagGo 能量脉冲</div>
+                <div class="ai-prompt-text">
+                    Prompt: Luxury commercial key visual, Anker Prime matte black and gold power bank beside a glowing golden Grammy phonograph trophy on a dark obsidian stage, golden soundwaves and subtle cyan tech light trails, cinematic lighting, 8k, photorealistic --ar 16:9
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 顶部四维战略校准指标栏 ==================== -->
+    <div class="kpi-row">
+        <div class="kpi-card">
+            <div class="kpi-label">01｜品牌调性跃迁</div>
+            <div class="kpi-val">殿堂级创造力赋能</div>
+            <div class="kpi-sub">告别户外音乐节“泥泞生存供电”，匹配格莱美大师级艺术标准与名流格调</div>
+        </div>
+        <div class="kpi-card blue">
+            <div class="kpi-label">02｜过往爆点基因复用</div>
+            <div class="kpi-val">刚需痛点 + 镜面打卡</div>
+            <div class="kpi-sub">延续 Coachella 被 BizBash 盛赞的“被动刚需使用 + 高颜值社交货币装置”</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-label">03｜全网标签矩阵</div>
+            <div class="kpi-val">1 主 + 4 次标签矩阵</div>
+            <div class="kpi-sub">以 #PowertheGrammyMoment 统领，分场景击穿 TT 娱乐、IG 审美与 YTB 深度评测</div>
+        </div>
+        <div class="kpi-card blue">
+            <div class="kpi-label">04｜跨国传播闭环</div>
+            <div class="kpi-val">海外争光 ➔ 国内溢价</div>
+            <div class="kpi-sub">联动抖音四大高格调垂类达人，将海外盛典背书转化为国内高端品牌资产</div>
+        </div>
+    </div>
+
+    <!-- ==================== 导航标签栏 ==================== -->
+    <div class="nav-tabs">
+        <div class="nav-tab active" onclick="switchTab('tab-strategy', this)">🧭 00｜前期调研、主题标签与产品矩阵</div>
+        <div class="nav-tab" onclick="switchTab('tab-overseas', this)">🌍 01｜海外三大平台策略 (TikTok / IG / YouTube)</div>
+        <div class="nav-tab" onclick="switchTab('tab-douyin', this)">🎬 02｜国内抖音跨国闭环与破圈达人矩阵</div>
+        <div class="nav-tab" onclick="switchTab('tab-assets', this)">🛡️ 03｜长效资产沉淀与全链路数据/舆情监控</div>
+    </div>
+
+    <!-- ==================== TAB 1: 前期策略、标签与产品矩阵 ==================== -->
+    <div id="tab-strategy" class="tab-panel active">
+        <div class="grid-12">
+
+            <!-- 四维校准卡片 -->
+            <div class="card col-12 gold-border">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">00｜前期策略调研（品牌调性 × 盛典基因 × 历史爆点）</div>
+                        <div class="card-subtitle">基于 Coachella 与 Tomorrowland 实战经验复盘，确立格莱美战役的差异化定位</div>
+                    </div>
+                    <span class="pill">Strategy & Insight</span>
+                </div>
+                <div class="grid-12" style="gap: 18px;">
+                    <div class="play-card col-6">
+                        <h4>✨ 调性升级：从“狂欢供电”到“殿堂级创造力赋能”</h4>
+                        <p style="font-size:0.9rem; color:var(--text-silver);">
+                            Coachella 和 Tomorrowland 代表户外、泥泞与狂欢，痛点是“生存级不断电”；而格莱美是全球音乐工业的最高殿堂，代表<b>高端格调、艺术灵感与大师级标准</b>。安克需借此完成从“实用充电配件”向<b>“驱动艺术灵感的殿堂级科技品牌”</b>的心智跃迁。
+                        </p>
+                    </div>
+                    <div class="play-card col-6">
+                        <h4>🔥 复盘过往热议话题：刚需痛点 + 社交货币装置</h4>
+                        <p style="font-size:0.9rem; color:var(--text-silver);">
+                            安克在 Coachella 之所以被 <i>BizBash</i> 和 <i>Event Marketer</i> 点名表扬，核心在于两点：一是<b>“不做贴Logo硬广，做被动使用式刚需”</b>；二是打造了极具社交货币属性的<b>“镜面自拍装置”</b>。本次格莱美战役将延续并升级这一双核基调。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1主4次标签矩阵 -->
+            <div class="card col-12">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">🏷️ 全球统一标签架构</div>
+                        <div class="card-subtitle">确保跨平台流量聚合、UGC 沉淀与全链路数据归因</div>
+                    </div>
+                    <span class="pill blue">Hashtag Architecture</span>
+                </div>
+
+                <div class="hashtag-matrix">
+                    <div class="main-tag-box">
+                        <span class="pill" style="align-self:flex-start;">🔥 全平台强制挂载主标签</span>
+                        <div class="main-tag-name"><b>#PowetheGrammyMoment</b>
+                        <p style="font-size:0.88rem; color:var(--text-silver);">
+                            贯穿预热挑战赛、红毯后台打卡、深度评测与电商落地页，沉淀品牌长期搜索资产。</div>
+                        </p>
+                    </div>
+                    <div class="sub-tags-grid">
+                        <div class="sub-tag-card">
+                            <b>#AnkerAtGrammys</b>
+                            <p>【官方事件主阵地】承接格莱美红毯盛况、官方联合海报与权威媒体 PR 背书。</p>
+                        </div>
+                        <div class="sub-tag-card">
+                            <b>#GrammyBatteryCheck</b>
+                            <p>【TikTok 娱乐挑战赛】专攻看演出“只剩1%电量”瞬间与追星省电小技巧 UGC 整活。</p>
+                        </div>
+                        <div class="sub-tag-card">
+                            <b>#BackstageWithAnker</b>
+                            <p>【Instagram 视觉美学】聚焦艺人化妆间幕后、鎏金声波镜面装置打卡与名流高定 OOTD。</p>
+                        </div>
+                        <div class="sub-tag-card">
+                            <b>#SoundOfMasterpiece</b>
+                            <p>【YouTube & 音频垂类】绑定 soundcore 耳机母带级音质测评与格莱美幕后电力工程纪实。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 三大产品线精准咬合 + 3个AI配图窗口 -->
+            <div class="card col-4">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">⚡ Anker Mag Go 黑金快充</div>
+                        <div class="card-subtitle">红毯名流与 VIP 晚宴随身供电</div>
+                    </div>
+                    <span class="pill">核心单品 01</span>
+                </div>
+                <div class="ai-slot">
+                    <img src="anker18.webp" alt="Anker Prime 晚宴手包概念图" onerror="this.style.display='none'">
+                    <div class="ai-placeholder-content">
+                        <span class="ai-slot-badge">🖼️ AI 配图位 02 · 红毯名流场景</span>
+                        <div class="ai-slot-title">名流晚宴手包中的黑金 Anker Prime</div>
+                        <div class="ai-prompt-text">
+                            Prompt: Close-up of a celebrity at the Grammy VIP gala holding a luxury evening clutch, pulling out a sleek matte black and gold Anker Prime power bank, warm golden bokeh, fashion photography --ar 4:3
+                        </div>
+                    </div>
+                </div>
+                <p style="font-size:0.9rem; color:var(--text-silver);">
+                    <b>场景咬合：</b>匹配格莱美红毯、VIP 晚宴名流的高定迷你手包随身供电，主打<b>“高格调外观 + 极速补能”</b>，解决漫长颁奖礼的手机拍摄断电焦虑。
+                </p>
+            </div>
+
+            <div class="card col-4">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">🎧 soundcore Liberty 5 Pro Max</div>
+                        <div class="card-subtitle">搭载 Thus™ 芯片的带屏 AI 消噪耳机</div>
+                    </div>
+                    <span class="pill blue">核心单品 02</span>
+                </div>
+                <div class="ai-slot">
+                    <img src="anker2.webp" alt="soundcore 带屏耳机概念图" onerror="this.style.display='none'">
+                    <div class="ai-placeholder-content">
+                        <span class="ai-slot-badge">🖼️ AI 配图位 03 · 音乐人后台</span>
+                        <div class="ai-slot-title">带屏充电盒 AI 录音转写与后台降噪</div>
+                        <div class="ai-prompt-text">
+                            Prompt: Macro shot of soundcore Liberty 5 Pro Max earbuds case with a glowing AMOLED touch screen showing AI voice transcription notes, music studio mixing console in background, moody gold and cyan lighting --ar 4:3
+                        </div>
+                    </div>
+                </div>
+                <p style="font-size:0.9rem; color:var(--text-silver);">
+                    <b>场景咬合：</b>音乐人后台隔绝喧嚣进入“VibeOS 灵感工作室”；充电盒屏幕<b>一键开启录音并由 Azure AI 转写多语言智能笔记</b>；吉尼斯认证音质重温获奖金曲。
+                </p>
+            </div>
+
+            <div class="card col-4">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">🔋 SOLIX 储能 & Nebula 投影</div>
+                        <div class="card-subtitle">零碳媒体中心供电 & AI 空间光影</div>
+                    </div>
+                    <span class="pill">核心单品 03</span>
+                </div>
+                <div class="ai-slot">
+                    <img src="anker3.webp" alt="SOLIX 与 Nebula 场景图" onerror="this.style.display='none'">
+                    <div class="ai-placeholder-content">
+                        <span class="ai-slot-badge">🖼️ AI 配图位 04 · 幕后与派对</span>
+                        <div class="ai-slot-title">Press Room 零碳供电与 Veo AI 投影</div>
+                        <div class="ai-prompt-text">
+                            Prompt: Grammy After-Party lounge with Nebula SpaceFlow projector casting immersive Google Veo AI golden liquid soundwave visuals on walls, powered by sleek Anker SOLIX power station --ar 4:3
+                        </div>
+                    </div>
+                </div>
+                <p style="font-size:0.9rem; color:var(--text-silver);">
+                    <b>场景咬合：</b>Anker SOLIX 为官方转播车与媒体中心提供零噪音零碳供电；Nebula SpaceFlow 结合 Google Veo AI 构建 After-Party 沉浸式光影空间。
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ==================== TAB 2: 海外三大平台差异化传播策略 ==================== -->
+    <div id="tab-overseas" class="tab-panel">
+        <div class="grid-12">
+
+            <!-- TikTok 板块 -->
+            <div class="card col-4">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">🎵 TikTok 娱乐造梗阵地</div>
+                        <div class="card-subtitle">红毯抓马街访 × 全民 UGC 挑战赛</div>
+                    </div>
+                    <span class="pill">高曝光高互动</span>
+                </div>
+
+                <div class="ai-slot">
+                    <img src="anker10.webp" alt="TikTok 红毯抓马街访概念图" onerror="this.style.display='none'">
+                    <div class="ai-placeholder-content">
+                        <span class="ai-slot-badge">🖼️ AI 配图位 05 · TikTok 红毯街访</span>
+                        <div class="ai-slot-title">《Battery Check! 格莱美红毯电量突击检查》</div>
+                        <div class="ai-prompt-text">
+                            Prompt: Host holding a giant golden microphone shaped like an Anker power bank, interviewing a shocked celebrity on the Grammy red carpet, paparazzi flashbulbs, vertical format style --ar 4:3
+                        </div>
+                    </div>
+                </div>
+
+                <div class="play-card">
+                    <h4>🎤 玩法一：【红毯街访】《Battery Check! 格莱美红毯电量突击检查》</h4>
+                    <ul>
+                        <li><b>踩热点创意：</b>模仿 TikTok 红毯突击采访，主持人手持“金色麦克风形状的 Anker 充电宝”，在格莱美红毯拦住歌手/网红问：<i>“当前手机剩余电量，若低于20%，最后一首歌放的什么？”</i></li>
+                        <li><b>传播转化：</b>抓拍明星发现只剩不足20%电量时的真实表情（制造 <b>#ZeroPercentDrama</b> tag），用 Anker MagGo 磁吸救场。</li>
+                    </ul>
+                </div>
+
+                <div class="play-card">
+                    <h4>✨ 玩法二：【全民UGC挑战赛】#GrammyInMyPocket</h4>
+                    <ul>
+                        <li><b>互动与内容：「例」</b>定制专属声控滤镜与卡点 BGM。前半段展示做家务、挤地铁等电量耗尽状态；当磁吸贴上 Anker 充电宝的“咔哒”一声，瞬间切换格莱美红毯聚光灯特效。</li>
+                        <li><b>奖励机制：</b>带主次标签发布，Top 3 赢“下届格莱美 VIP 门票 + 洛杉矶往返机票”；抽 100 份黑金限定礼盒。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Instagram 板块 -->
+            <div class="card col-4 gold-border">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">📸 Instagram 高端美学场</div>
+                        <div class="card-subtitle">时尚反差种草 × 视觉艺术家联名</div>
+                    </div>
+                    <span class="pill">高质感强视觉</span>
+                </div>
+
+                <div class="ai-slot">
+                    <img src="anker1.webp" alt="IG 高定手包里装了什么概念图" onerror="this.style.display='none'">
+                    <div class="ai-placeholder-content">
+                        <span class="ai-slot-badge">🖼️ AI 配图位 06 · IG 高定手包</span>
+                        <div class="ai-slot-title">《What's in My Grammy Clutch?》</div>
+                        <div class="ai-prompt-text">
+                            Prompt: Luxury crystal-embedded miniature evening clutch opened on a velvet vanity, containing only lipstick, a Grammy invite, and a slim black and gold Anker MagGo power bank, aesthetic --ar 4:3
+                        </div>
+                    </div>
+                </div>
+
+                <div class="play-card">
+                    <h4>👜 玩法一：【时尚反差种草】《What's in My Grammy Clutch?》</h4>
+                    <ul>
+                        <li><b>场景切入：</b>明星走红毯背Mini Bag。联动出席格莱美的 It Girl/时尚 Icon 发布 Reels 与九宫格大片：打开价值数万美金的手包，里面只有口红、邀请函、以及薄如卡片的 <b>Anker 黑金限定款 MagGo</b>。</li>
+                        <li><b>调性升华：</b>将安克从数码配件拉升为“红毯高定穿搭的时尚单品”。</li>
+                    </ul>
+                </div>
+
+                <div class="play-card">
+                    <h4>🎨 玩法二：【视觉艺术家联名】“Invisible Power 看不见的能量”幕后摄影展</h4>
+                    <ul>
+                        <li><b>共创内容：</b>邀请格莱美官方御用肖像摄影师，在后台搭建由 Anker SOLIX 和流光数据线构成的“赛博声波暗房”。抓拍获奖音乐人刚下台最真实的泪水与喜悦，文案：<i>“世界只看见金留声机，我们照亮暗处的一万小时。”</i></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- YouTube 板块 -->
+            <div class="card col-4">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">▶️ YouTube 深度叙事场</div>
+                        <div class="card-subtitle">硬核科技大V视角 × 音乐纪录短片</div>
+                    </div>
+                    <span class="pill blue">讲透事件、立专业度</span>
+                </div>
+
+                <div class="ai-slot">
+                    <img src="Anker11.webp" alt="YouTube 科技大V后台接管电力" onerror="this.style.display='none'">
+                    <div class="ai-placeholder-content">
+                        <span class="ai-slot-badge">🖼️ AI 配图位 07 · YTB 大V探秘</span>
+                        <div class="ai-slot-title">《We Powered the GRAMMYs Backstage for 24 Hours》</div>
+                        <div class="ai-prompt-text">
+                            Prompt: Tech vlogger like MKBHD walking through Grammy backstage restricted areas holding an official Anker all-access pass, cinematic documentary style, 8k --ar 4:3
+                        </div>
+                    </div>
+                </div>
+
+                <div class="play-card">
+                    <h4>🎙️ 玩法一：【硬核大V视角】《We Powered the GRAMMYs Backstage for 24 Hours》</h4>
+                    <ul>
+                        <li><b>头部合作：</b>邀请 MKBHD 或 Mrwhosetheboss 级别的顶流博主，手持“Anker 后台通行证”进入后台核心区。</li>
+                        <li><b>内容看点：</b>揭秘几百名国际记者如何靠 Anker 充电抢发全球首图、直播车如何用 Anker SOLIX 应急供电，以此立住技术壁垒。</li>
+                    </ul>
+                </div>
+
+                <div class="play-card">
+                    <h4>🎵 玩法二：【音乐纪录短片】《The Unplugged Grammy》</h4>
+                    <ul>
+                        <li><b>定制呈现：</b>邀请本届格莱美提名者在洛杉矶街头或沙漠，仅用一台 <b>Anker SOLIX 储能电源</b>驱动全套顶级录音设备，与独立音乐人共同完成“场外格莱美 Live Session”，沉淀年度 TVC 资产。</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ==================== TAB 3: 国内抖音平台推广策略 ==================== -->
+    <div id="tab-douyin" class="tab-panel">
+        <div class="grid-12">
+
+            <div class="card col-12 gold-border">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">🇨🇳 国内抖音平台推广策略：跨国事件闭环与四大破圈达人矩阵</div>
+                        <div class="card-subtitle">不做生硬的海外素材搬运，打通“海外顶级盛典争光 ➔ 国内舆论民族自豪感与高生活品质共鸣”闭环</div>
+                    </div>
+                    <span class="pill">Domestic Douyin Loop</span>
+                </div>
+
+                <table class="luxury-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 19%;">创意达人类型</th>
+                            <th style="width: 23%;">选人标准与受众画像</th>
+                            <th style="width: 36%;">核心视频内容方向</th>
+                            <th style="width: 22%;">植入产品与转化逻辑</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <b style="color:#FFF; font-size:1rem;">1. 商业财经 / 品牌营销拆解类达人</b><br>
+                                <span style="font-size:0.8rem; color:var(--grammy-gold);">（传播类视角 · 国内外闭环）</span>
+                            </td>
+                            <td>口才极佳、逻辑严密、擅长拆解出海商业大事件（受众为一二线白领、创业者、科技爱好者）</td>
+                            <td>
+                                <span class="script-title">《从科切拉到格莱美，深扒安克如何用一块充电宝“玩转”欧美名利场》</span>
+                                以商业观察者视角，复盘中国品牌如何跳出“低价代工内卷”，凭硬核科技成为格莱美官方座上宾。解析老外为什么在活动中使用安克，营造国货出海排面与品牌高度。
+                            </td>
+                            <td>塑造 <b>Anker 母品牌</b>高端科技形象，将海外事件热度转化为国内大众的品牌崇拜与信任资产。</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b style="color:#FFF; font-size:1rem;">2. 高端旅行 / 双语主持采访类达人</b><br>
+                                <span style="font-size:0.8rem; color:#6BE5FF;">（高端达人 · 强表达 · 现场直击）</span>
+                            </td>
+                            <td>拥有流利双语能力、高颜值高质感、常年穿梭于全球顶级盛事的旅行/时尚 Vlogger</td>
+                            <td>
+                                <span class="script-title">《受邀潜入格莱美后台，我用安克“借电社交”，突击采访了欧美顶流！》</span>
+                                第一视角记录前往洛杉矶参加格莱美的高质感旅程。在后台充电区用 Anker 充电宝 作为“社交破冰神器”与外国音乐人攀谈；展示用 <b>Liberty 5 Pro Max 带屏耳机</b>现场实时语音转写英文采访稿、一键生成中文智能笔记。
+                            </td>
+                            <td>强种草 <b>Anker MagGo 快充作为出行刚需</b>+<b>Liberty 5 Pro Max</b>作为跨国沟通与高端商务办公神器。</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b style="color:#FFF; font-size:1rem;">3. 硬核乐评人 / 音乐创作类达人</b><br>
+                                <span style="font-size:0.8rem; color:var(--grammy-gold);">（音乐垂类 · 专业音质背书）</span>
+                            </td>
+                            <td>毒舌乐评人、独立音乐制作人、伯克利音乐学院背景博主（口条好、感染力强）</td>
+                            <td>
+                                <span class="script-title">《今年格莱美神仙打架！戴上这副AI耳机，带你听懂年度金曲里的隐藏百万级细节》</span>
+                                借势格莱美获奖名单公布的全网最高热度，逐帧盘点获奖神级现场。顺势引出格莱美官方合作品牌声阔耳机，演示其 2 倍降噪与 AI 定制调音如何让普通人在通勤路上也能享受“格莱美内场”的听觉盛宴。
+                            </td>
+                            <td>精准收割音乐爱好者，直接带动 <b>soundcore 降噪耳机</b>在电商店铺的搜索与成交。</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b style="color:#FFF; font-size:1rem;">4. 高生活品质 / 美学好物类达人</b><br>
+                                <span style="font-size:0.8rem; color:#6BE5FF;">（居家格调 · 情绪价值种草）</span>
+                            </td>
+                            <td>精致独居青年、建筑/室内设计师、桌面博主</td>
+                            <td>
+                                <span class="script-title">《把格莱美 After-Party 搬回家，高能量年轻人的居家美学》</span>
+                                摒弃参数，只讲“情绪价值与生活格调”。展示下班回家后，用 <b>Nebula SpaceFlow AI 投影</b>将客厅变成格莱美流光溢彩的沉浸式音乐现场，桌面摆放黑金质感的 Anker 为全套苹果设备补能，诠释生活格调。
+                            </td>
+                            <td>拔高品牌调性，吸引追求高品质生活的都市中产，带动全屋智能影音与高端桌面充系列连带购买。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+<!-- ==================== 03 | 长效资产沉淀与全链路数据/舆情监控 ==================== -->
+<div class="col-12" style="margin-top: 28px;">
+    <!-- 顶部黄色胶囊标签 -->
+    <div style="margin-bottom: 18px;">
+        <span style="display: inline-block; background: linear-gradient(90deg, #D4AF37, #F5E2A8); color: #0B0D13; font-weight: 800; font-size: 0.88rem; padding: 6px 16px; border-radius: 999px; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);">
+            📊 03｜长效资产沉淀与全链路数据/舆情监控
+        </span>
+    </div>
+
+    <!-- 左右双栏 Grid 布局 -->
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; align-items: stretch;">
+
+        <!-- ==================== 左栏：一、长效内容与品牌资产沉淀 ==================== -->
+        <div class="card" style="background: #12151E; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 26px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <!-- 卡片头部 -->
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.07);">
+                    <div>
+                        <h3 style="font-size: 1.2rem; color: #FFFFFF; font-weight: 800; margin: 0 0 6px 0;">💎 一、长效内容与品牌资产沉淀</h3>
+                        <div style="font-size: 0.84rem; color: #A0AAB8;">避免“盛典结束流量清零”，以高光切片沉淀全年投流素材库与品牌词搜索资产</div>
+                    </div>
+                    <span style="background: rgba(212, 175, 55, 0.15); color: #F5E2A8; border: 1px solid rgba(212, 175, 55, 0.35); font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 999px; white-space: nowrap;">Content & Brand Assets</span>
+                </div>
+
+                <!-- 视觉配图位（已替换为 boxing.webp） -->
+                <div style="width: 100%; height: 220px; border-radius: 14px; overflow: hidden; margin-bottom: 18px; border: 1px solid rgba(212, 175, 55, 0.25); position: relative; background: #0B0D13;">
+                    <img src="boxing.webp" alt="Anker x GRAMMYs 资产沉淀" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+                </div>
+
+                <!-- 1. 社媒流量端内容资产沉淀（核心置顶） -->
+                <div style="background: linear-gradient(145deg, rgba(212, 175, 55, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%); border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 14px; padding: 16px 18px; margin-bottom: 14px;">
+                    <h4 style="font-size: 0.98rem; color: #F5E2A8; margin: 0 0 8px 0; display: flex; align-items: center; gap: 6px;">
+                        🔥 1. 社媒流量端内容资产沉淀 & 爆款Tag截流
+                    </h4>
+                    <ul style="padding-left: 18px; margin: 0; font-size: 0.85rem; color: #D0D7E2; line-height: 1.65;">
+                        <li style="margin-bottom: 6px;"><b>高光切片投流素材库（Spark Ads）：</b>将红毯“电量突击检查”瞬间、后台极限供电实测及达人高赞互动，剪辑为15s/30s强Hook切片包，直接授权进行 Spark Ads 追投，作为未来半年 TikTok/Reels 最高转化率的广告素材资产。</li>
+                        <li><b>爆款Tag评论区引导与品牌词植入：</b>一旦活动或红毯Tag爆火，官方矩阵与KOC即刻空降高赞视频评论区前排玩梗互动，高频埋入 <b style="color:#F5E2A8;">Anker Prime / Anker MagGo / Grammy Power Bank</b> 等品牌词，配合评论区搜索蓝字引导，将泛娱乐流量沉淀为精准品牌词搜索量。</li>
+                    </ul>
+                </div>
+
+                <!-- 2. B2B 行业公关背书（提前） -->
+                <div style="background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 14px; padding: 14px 18px; margin-bottom: 14px;">
+                    <h4 style="font-size: 0.95rem; color: #FFFFFF; margin: 0 0 6px 0;">📰 2. B2B 行业公关背书 PR</h4>
+                    <p style="font-size: 0.84rem; color: #A0AAB8; margin: 0; line-height: 1.6;">
+                        盛典后联合 <i>Billboard、Rolling Stone、Adweek</i> 及国内 36氪、虎嗅发布深度复盘战报，将社媒破亿声量包装为“中国科技品牌征服全球顶级文化IP”标杆案例，赋能全球线下渠道谈判。
+                    </p>
+                </div>
+
+                <!-- 3. 联名产品（移动至最后，作为长尾承接点） -->
+                <div style="background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 14px; padding: 14px 18px;">
+                    <h4 style="font-size: 0.95rem; color: #FFFFFF; margin: 0 0 6px 0;">🎁 3. 联名产品与数字资产长尾承接</h4>
+                    <p style="font-size: 0.84rem; color: #A0AAB8; margin: 0; line-height: 1.6;">
+                        承接社媒搜索长尾流量，推出「Anker × GRAMMYs 黑金大师限定系列」（定制镌刻版 MagGo 移动电源与 Liberty 5 Pro Max 耳机），内置格莱美调音师共创“大师 EQ 音效包”，固化为全年高溢价旗舰款。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ==================== 右栏：二、全链路数据追踪与 7x24h 舆情响应体系 ==================== -->
+        <div class="card" style="background: #12151E; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 26px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <!-- 卡片头部 -->
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.07);">
+                    <div>
+                        <h3 style="font-size: 1.2rem; color: #FFFFFF; font-weight: 800; margin: 0 0 6px 0;">🛡️ 二、全链路数据追踪与舆情响应体系</h3>
+                        <div style="font-size: 0.84rem; color: #A0AAB8;">科学归因每一分流量预算 ROI，捕捉爆款热梗并构建品牌口碑</div>
+                    </div>
+                    <span style="background: rgba(0, 168, 232, 0.15); color: #6BE5FF; border: 1px solid rgba(0, 168, 232, 0.35); font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 999px; white-space: nowrap;">Data & Reputation</span>
+                </div>
+
+                <!-- 上半部分：全链路三阶段数据监控体系 -->
+                <div style="background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 14px; padding: 18px 20px; margin-bottom: 18px;">
+                    <h4 style="font-size: 0.98rem; color: #FFFFFF; margin: 0 0 12px 0;">📊 全链路三阶段流量与品牌词监控体系</h4>
+                    <ul style="padding-left: 18px; margin: 0; font-size: 0.85rem; color: #A0AAB8; line-height: 1.7;">
+                        <li style="margin-bottom: 10px;"><b style="color: #F7F5F0;">事前（预热蓄水期）：</b>重点监控 TikTok 挑战赛参与人数、定制 AR 滤镜使用率、预热切片完播率及官网专题页 UV 转化。</li>
+                        <li style="margin-bottom: 10px;"><b style="color: #F7F5F0;">事中（红毯引爆期）：</b>实时追踪标签总曝光量、红人视频互动率、<b style="color: #F5E2A8;">评论区 Anker 品牌词提及率（Mention Rate）</b>，以及现场充电站打卡发帖量。</li>
+                        <li><b style="color: #F7F5F0;">事后（长尾收割期）：</b>监控 Google Trends 与社媒搜索框中 <b style="color: #F5E2A8;">“Anker + Grammy”关联品牌词搜索峰值</b>、投流切片长尾 ROI 及电商端“格莱美同款”搜索增长率。</li>
+                    </ul>
+                </div>
+
+                <!-- 下半部分：品牌口碑与实时舆情响应（已去饭圈化） -->
+                <div style="background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 14px; padding: 18px 20px;">
+                    <h4 style="font-size: 0.98rem; color: #FFFFFF; margin: 0 0 8px 0;">🚨 实时舆情雷达与响应机制（Brandwatch / Meltwater）</h4>
+                    <p style="font-size: 0.82rem; color: #A0AAB8; margin: 0 0 12px 0;">
+                        利用 Brandwatch 实时监听全球社交声量与情感倾向，跳出敏感话题旋涡，聚焦流量截流与体验护航：
+                    </p>
+                    <ul style="padding-left: 18px; margin: 0; font-size: 0.85rem; color: #A0AAB8; line-height: 1.7;">
+                        <li style="margin-bottom: 10px;">
+                            <b style="color: #F5E2A8;">针对“突发爆款Tag与高赞名场面”：</b>一旦捕捉到某条红毯野生视频或相关Tag互动量激增，即刻启动<b>评论区运营,</b>官号下场造梗，置顶铺设 <i>“Powered by Anker Prime”</i> 品牌词与痛点共鸣评论，将公域自然爆款顺势转化为品牌长尾曝光。
+                        </li>
+                        <li style="margin-bottom: 10px;">
+                            <b style="color: #F7F5F0;">针对“艺术盛典商业化植入”讨论：</b>规避生硬叫卖引起的乐迷审美疲劳，统一官方与达人互动基调为<b>“幕后隐形赋能者”</b>强调<i>“Anker 在聚光灯外默默护航每一刻电力，把 100% 的舞台高光留给音乐与创作者”</i>，博取高净值乐迷圈层的品牌好感。
+                        </li>
+                        <li>
+                            <b style="color: #F7F5F0;">针对“硬件高负荷发热” & “现场设备体验”：</b>提前储备第三方权威安全认证图卡与自研温控科普视频，由客服号温和专业解答；格莱美现场充电站配置专职技术工程师团队与双倍冗余设备，确保现场媒体与嘉宾 0 断电、0 差评体验。
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function switchTab(tabId, btn) {
+        document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+        document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        btn.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
